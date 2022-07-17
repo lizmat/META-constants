@@ -1,0 +1,23 @@
+use Test;
+
+my constant %META =
+  name        => "frobnicate",
+  description => "to foo the bar very well",
+  version     => "42.666",
+  auth        => "zef:scoobydoo",
+  authors     => ("Scooby-Doo", "Velma Dinkley"),
+;
+
+class ProvideMeta { method meta() { %META } }
+
+use META::constants ProvideMeta;
+
+plan 6;
+is-deeply NAME,        %META<name>,            'is NAME ok';
+is-deeply DESCRIPTION, %META<description>,     'is DESCRIPTION ok';
+is-deeply VERSION,     %META<version>.Version, 'is VERSION ok';
+is-deeply AUTH,        %META<auth>,            'is AUTH ok';
+is-deeply AUTHORS,  %META<authors>.join(', '), 'is AUTHORS ok';
+is-deeply META,        %META,                  'is META ok';
+
+# vim: expandtab shiftwidth=4
