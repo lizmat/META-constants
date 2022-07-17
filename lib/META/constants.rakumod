@@ -1,17 +1,38 @@
+my constant %DEFAULT =
+  name        => "",
+  description => "",
+  version     => "",
+  auth        => "",
+  authors     => (),
+  source-url  => "",
+;
+
+my sub release($of) { $of.version.Str.subst(/ '.' g .+ /) }
+
 sub EXPORT($DISTRIBUTION) {
-    if $DISTRIBUTION.can("meta") {
-        my %META := $DISTRIBUTION.meta;
+    with (try $DISTRIBUTION.meta) // %DEFAULT -> %META {
+        my $compiler := Compiler.new;
+        my $vm       := VM.new;
+
+        my $NAME        = %META<name>;
+        my $DESCRIPTION = %META<description>;
+        my $VERSION     = %META<version>.Version;
+        my $AUTH        = %META<auth>;
+        my $AUTHORS     = %META<authors>.join(', ');
+        my $SOURCE-URL  = %META<source-url>.subst(/ \.git $/);
+        my $CREDITS     = $NAME ?? qq:to/CREDITS/.chomp !! "";
+Provided by $NAME - $VERSION by $AUTHORS,
+  implemented in the Raku® Programming Language $*RAKU.version(),
+  running on $compiler.name.tc()™ &release($compiler), built on $vm.name.tc() &release($vm).
+
+Suggestions / bug reports / general comments are welcome at
+  $SOURCE-URL
+CREDITS
+
         Map.new: (
-          META        => %META,
-          NAME        => %META<name>,
-          DESCRIPTION => %META<description>,
-          VERSION     => %META<version>.Version,
-          AUTH        => %META<auth>,
-          AUTHORS     => %META<authors>.join(', '),
+          :%META, :$NAME, :$DESCRIPTION, :$VERSION,
+          :$AUTH, :$AUTHORS, :$SOURCE-URL, :$CREDITS
         )
-    }
-    else {
-        die $DISTRIBUTION.^name ~ ' cannot call .meta';
     }
 }
 
@@ -32,6 +53,8 @@ say DESCRIPTION;
 say VERSION;
 say AUTH;
 say AUTHORS;
+say SOURCE-URL;
+say CREDITS;
 
 =end code
 
@@ -49,6 +72,8 @@ method, can be used.
 =item VERSION - the "version" field as a Version object
 =item AUTH - the "auth" field
 =item AUTHORS - the "authors" field, joined by ', '
+=item SOURCE-URL - the "source-url" field with ".git" removed
+=item CREDITS - a credit text created from above
 =item META - the meta information hash itself
 
 =head1 AUTHOR

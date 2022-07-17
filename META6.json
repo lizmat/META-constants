@@ -18,8 +18,10 @@
   ],
   "source-url": "https://github.com/lizmat/META-constants.git",
   "tags": [
+    "META",
+    "MODULES"
   ],
   "test-depends": [
   ],
-  "version": "0.0.1"
+  "version": "0.0.2"
 }

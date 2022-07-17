@@ -2,5 +2,11 @@ Revision history for META-constants
 
 {{$NEXT}}
 
+0.0.2  2022-07-17T15:06:13+02:00
+    - Add support for SOURCE-URL and CREDITS
+    - Silently handle any errand values for DISTRIBUTION: this can
+      happen e.g. with "mi6 build" in a module.  It will still export
+      the constants, but they will be effectively empty
+
 0.0.1  2022-07-17T13:25:53+02:00
     - Initial version

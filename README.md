@@ -16,6 +16,8 @@ say DESCRIPTION;
 say VERSION;
 say AUTH;
 say AUTHORS;
+say SOURCE-URL;
+say CREDITS;
 ```
 
 DESCRIPTION
@@ -35,6 +37,10 @@ EXPORTED CONSTANTS
   * AUTH - the "auth" field
 
   * AUTHORS - the "authors" field, joined by ', '
+
+  * SOURCE-URL - the "source-url" field with ".git" removed
+
+  * CREDITS - a credit text created from above
 
   * META - the meta information hash itself
 
