@@ -1,26 +1,17 @@
-my constant %DEFAULT =
-  name        => "",
-  description => "",
-  version     => "",
-  auth        => "",
-  authors     => (),
-  source-url  => "",
-;
-
 my sub release($of) { $of.version.Str.subst(/ '.' g .+ /) }
 
-sub EXPORT($DISTRIBUTION) {
-    with (try $DISTRIBUTION.meta) // %DEFAULT -> %META {
-        my $compiler := Compiler.new;
-        my $vm       := VM.new;
+sub EXPORT(\DISTRIBUTION) {
+    my %META; %META := $_ with try DISTRIBUTION.meta;
+    my $compiler := Compiler.new;
+    my $vm       := VM.new;
 
-        my $NAME        = %META<name>;
-        my $DESCRIPTION = %META<description>;
-        my $VERSION     = %META<version>.Version;
-        my $AUTH        = %META<auth>;
-        my $AUTHORS     = %META<authors>.join(', ');
-        my $SOURCE-URL  = %META<source-url>.subst(/ \.git $/);
-        my $CREDITS     = $NAME ?? qq:to/CREDITS/.chomp !! "";
+    my $NAME        = %META<name> // "";
+    my $DESCRIPTION = %META<description> // "";
+    my $VERSION     = (%META<version> // "").Version;
+    my $AUTH        = %META<auth> // "";
+    my $AUTHORS     = (%META<authors> // ()).join(', ');
+    my $SOURCE-URL  = (%META<source-url> // ()).subst(/ \.git $/);
+    my $CREDITS     = $NAME ?? qq:to/CREDITS/.chomp !! "";
 Provided by $NAME - $VERSION by $AUTHORS,
   implemented in the Raku® Programming Language $*RAKU.version(),
   running on $compiler.name.tc()™ &release($compiler), built on $vm.name.tc() &release($vm).
@@ -29,11 +20,10 @@ Suggestions / bug reports / general comments are welcome at
   $SOURCE-URL
 CREDITS
 
-        Map.new: (
-          :%META, :$NAME, :$DESCRIPTION, :$VERSION,
-          :$AUTH, :$AUTHORS, :$SOURCE-URL, :$CREDITS
-        )
-    }
+    Map.new: (
+      :%META, :$NAME, :$DESCRIPTION, :$VERSION,
+      :$AUTH, :$AUTHORS, :$SOURCE-URL, :$CREDITS
+    )
 }
 
 =begin pod

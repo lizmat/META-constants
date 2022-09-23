@@ -2,6 +2,10 @@ Revision history for META-constants
 
 {{$NEXT}}
 
+0.0.3  2022-09-23T20:25:25+02:00
+    - Make loading without a properly fleshed out $?DISTRIBUTION more
+      resilient towards compile time errors.
+
 0.0.2  2022-07-17T15:06:13+02:00
     - Add support for SOURCE-URL and CREDITS
     - Silently handle any errand values for DISTRIBUTION: this can
