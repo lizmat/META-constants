@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/lizmat/META-constants/actions/workflows/test.yml/badge.svg)](https://github.com/lizmat/META-constants/actions)
+[![Actions Status](https://github.com/lizmat/META-constants/actions/workflows/linux.yml/badge.svg)](https://github.com/lizmat/META-constants/actions) [![Actions Status](https://github.com/lizmat/META-constants/actions/workflows/macos.yml/badge.svg)](https://github.com/lizmat/META-constants/actions) [![Actions Status](https://github.com/lizmat/META-constants/actions/workflows/windows.yml/badge.svg)](https://github.com/lizmat/META-constants/actions)
 
 NAME
 ====
@@ -56,7 +56,7 @@ If you like this module, or what I’m doing more generally, committing to a [sm
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2022 Elizabeth Mattijsen
+Copyright 2022, 2024 Elizabeth Mattijsen
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
