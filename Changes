@@ -1,6 +1,8 @@
 Revision history for META-constants
 
 {{$NEXT}}
+
+0.0.4  2024-07-29T15:34:38+02:00
     - Update copyright year
     - Add separate CI badges for each OS
     - Add sponsor button
