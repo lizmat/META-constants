@@ -1,6 +1,8 @@
 Revision history for META-constants
 
 {{$NEXT}}
+
+0.0.5  2024-09-24T17:59:58+02:00
     - Add support for "api" field / API constant
 
 0.0.4  2024-07-29T15:34:38+02:00

@@ -14,6 +14,7 @@ use META::constants $?DISTRIBUTION;
 say NAME;
 say DESCRIPTION;
 say VERSION;
+say API;
 say AUTH;
 say AUTHORS;
 say SOURCE-URL;
@@ -35,6 +36,8 @@ EXPORTED CONSTANTS
   * VERSION - the "version" field as a Version object
 
   * AUTH - the "auth" field
+
+  * API - the "api" field
 
   * AUTHORS - the "authors" field, joined by ', '
 
