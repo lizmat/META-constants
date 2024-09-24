@@ -4,6 +4,7 @@ my constant %META =
   name        => "frobnicate",
   description => "to foo the bar very well",
   version     => "42.666",
+  api         => "137",
   auth        => "zef:scoobydoo",
   authors     => ("Scooby-Doo", "Velma Dinkley"),
   source-url  => "https://github.com/lizmat/META-constants.git",
@@ -13,11 +14,12 @@ class ProvideMeta { method meta() { %META } }
 
 use META::constants ProvideMeta;
 
-plan 15;
+plan 17;
 
 is-deeply NAME,        %META<name>,               'is NAME ok';
 is-deeply DESCRIPTION, %META<description>,        'is DESCRIPTION ok';
 is-deeply VERSION,     %META<version>.Version,    'is VERSION ok';
+is-deeply API,         %META<api>,                'is API ok';
 is-deeply AUTH,        %META<auth>,               'is AUTH ok';
 is-deeply AUTHORS,     %META<authors>.join(', '), 'is AUTHORS ok';
 is-deeply SOURCE-URL,  %META<source-url>.chop(4), 'is SOURCE-URL ok';
@@ -29,6 +31,7 @@ is-deeply META,        %META,                     'is META ok';
     is-deeply NAME,        "",         'is no NAME ok';
     is-deeply DESCRIPTION, "",         'is no DESCRIPTION ok';
     is-deeply VERSION,     "".Version, 'is no VERSION ok';
+    is-deeply API,         "",         'is no API ok';
     is-deeply AUTH,        "",         'is no AUTH ok';
     is-deeply AUTHORS,     "",         'is no AUTHORS ok';
     is-deeply SOURCE-URL,  "",         'is no SOURCE-URL ok';

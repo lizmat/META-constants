@@ -8,6 +8,7 @@ sub EXPORT(\DISTRIBUTION) {
     my $NAME        = %META<name> // "";
     my $DESCRIPTION = %META<description> // "";
     my $VERSION     = (%META<version> // "").Version;
+    my $API         = %META<api> // "";
     my $AUTH        = %META<auth> // "";
     my $AUTHORS     = (%META<authors> // ()).join(', ');
     my $SOURCE-URL  = (%META<source-url> // ()).subst(/ \.git $/);
@@ -21,7 +22,7 @@ Suggestions / bug reports / general comments are welcome at
 CREDITS
 
     Map.new: (
-      :%META, :$NAME, :$DESCRIPTION, :$VERSION,
+      :%META, :$NAME, :$DESCRIPTION, :$VERSION, :$API,
       :$AUTH, :$AUTHORS, :$SOURCE-URL, :$CREDITS
     )
 }
@@ -41,6 +42,7 @@ use META::constants $?DISTRIBUTION;
 say NAME;
 say DESCRIPTION;
 say VERSION;
+say API;
 say AUTH;
 say AUTHORS;
 say SOURCE-URL;
@@ -61,6 +63,7 @@ method, can be used.
 =item DESCRIPTION - the "description" field
 =item VERSION - the "version" field as a Version object
 =item AUTH - the "auth" field
+=item API - the "api" field
 =item AUTHORS - the "authors" field, joined by ', '
 =item SOURCE-URL - the "source-url" field with ".git" removed
 =item CREDITS - a credit text created from above
